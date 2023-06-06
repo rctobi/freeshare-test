@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="{{ asset('css/top.css') }}">
     @endsection
 
-    <x-slot name=header>FreeShare</x-slot>
+    <x-slot name=header>Home</x-slot>
 
     <div class="tweet">
         @foreach ($tweets as $tweet)
