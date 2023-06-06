@@ -15,11 +15,9 @@ use App\Http\Controllers\TweetController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [TweetController::class, 'index'])->name('tweet.index');
 Route::get('/create', [TweetController::class, 'create'])->name('tweet.create');
+Route::post('/store', [TweetController::class, 'store'])->name('tweet.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

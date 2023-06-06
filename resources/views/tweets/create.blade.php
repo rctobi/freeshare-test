@@ -8,11 +8,12 @@
 
     <x-slot name=header>新規投稿</x-slot>
 
-    <form method="POST" action="#" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('tweet.store') }}" enctype="multipart/form-data">
         @csrf
+
         <div class="form-item">
             <textarea name="content" class="content__area">{{ old('content') }}</textarea>
-            @error('content'){{ $message }}@enderror
+            @error('content')<div class="error">{{ $message }}</div>@enderror
         </div>
 
         <div class="form-item">

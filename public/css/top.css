@@ -1,29 +1,4 @@
-/* ヘッダー部分 */
-  .header {
-    background-color: #FDB86D;
-    color: #fff;
-    border-radius: 5px;
-    padding: 30px 30px;
-    margin: 20px 0;
-  }
-
-  .header__title {
-    font-size: 22px;
-  }
-
-  .auth {
-    font-size: 18px;
-    display: flex;
-  }
-
-  .auth__login {
-    display: inline-block;
-    margin-right: 20px
-  }
-
-  /* トップページ */
-
-  .tweet {
+.tweet {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
@@ -57,95 +32,14 @@
     line-height: 1.8;
   }
 
-  .tweet-date {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #999;
-  }
-
   .tweet-image {
     margin-top: 16px;
     max-width: 100%;
     border-radius: 3px;
   }
 
-  .button {
-    background-color: #FDB86D;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 10px 22px;
-    margin-top: 10px;
-  }
-
-  .button:hover {
-    opacity: .8;
-  }
-
-  /* 編集と削除ボタン */
-
-  .edit-container {
-    position: absolute;
-    display: flex;
-    top: 5px;
-    right: 5px;
-  }
-
-  .edit-image {
-    width: 30px;
-    opacity: .2;
-  }
-
-  .edit-image:hover {
-    width: 30px;
-    opacity: .6;
-  }
-
-  /* 投稿・編集ページ */
-
-  .content__area {
-    width: 100%;
-    height: 200px;
-  }
-
-  /* コメント部分 */
-
-  /* コメント投稿 */
-  .comment__content-area {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-
-  /* コメント一覧部分 */
-
-  .comment-list {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-    margin: 16px 0;
-    padding: 16px;
-  }
-
-  .comment-container {
-    position: relative;
-    border-radius: 5px;
-    padding: 0 10px;
-    margin-bottom: 5px;
-  }
-
-  .comment-user-name {
-    font-size: 16px;
-    font-weight: bold;
-    color: #1da1f2;
-  }
-
-  .comment-content {
-    font-size: 14px;
-    color: #333;
-    padding: 10px 20px;
-    line-height: 1.8;
+  .tweet-date {
+    margin: 8px 0;
+    font-size: 12px;
+    color: #999;
   }
