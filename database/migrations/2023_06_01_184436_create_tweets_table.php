@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('content')->comment('つぶやき内容');
             $table->string('image')->nullable()->comment('投稿画像');
             $table->timestamps();
+            
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
