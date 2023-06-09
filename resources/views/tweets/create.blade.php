@@ -18,7 +18,7 @@
             @error('image')<div class="error">{{ $message }}</div>@enderror
         </div>
         
-        <!-- user_idも送信 -->
+        <!-- user_id 送信 -->
         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
         
         <x-primary-button onclick="storeDialog">投稿</x-primary-button>

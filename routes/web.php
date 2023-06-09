@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,10 @@ Route::post('/update', [TweetController::class, 'update'])->name('tweet.update')
 // 投稿データの削除
 Route::post('/destroy/{id}', [TweetController::class, 'destroy'])->name('tweet.destroy');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// コメントの登録
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+// コメントの削除
+Route::post('/comment/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

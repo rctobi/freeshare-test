@@ -1,7 +1,7 @@
 <x-app-layout>
-  
+
     <x-slot name=title>{{ $tweet->user->name }} on FreeShare: "{{ $tweet->content }}" / FreeShare</x-slot>
-    
+
     <style>
         .tweet-container:hover {
             background: inherit;
@@ -21,11 +21,11 @@
             <div id="modal" class="modal" onclick="hideModal()">
                 <img src="{{ asset('storage/' . $tweet->image) }}" alt="投稿画像" class="modal-image">
             </div>
-            
+
             <div class="tweet-date">{{ $tweet->updated_at }}</div>
             <x-primary-button>イイネ&nbsp;<img src="{{ asset('images/good_icon.png') }}" alt=""></x-primary-button>
             <x-primary-button>シェア&nbsp;<img src="{{ asset('images/share_icon.png') }}" alt=""></x-primary-button>
-            
+
             @if ($tweet->user_id == Auth::id())
                 <div class="tweet_menu">
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -54,5 +54,49 @@
             @endif
         </div>
     </div>
-    
+
+    <!-- コメント一覧 -->
+    @auth
+        <div class="comment-container">
+            <!-- コメント投稿フォーム -->
+            <div class="comment-form">
+                <h2 class="comment-title">コメント投稿</h2>
+                <form method="post" action="{{ route('comment.store') }}">
+                    @csrf
+
+                    <textarea name="content" class="comment-text" placeholder="コメントを投稿してみよう">{{ old('content') }}</textarea>
+                    @error('content'){{ $message }}@enderror
+
+                    <x-primary-button onclick="storeDialog();">投稿</x-primary-button>
+
+                    <!-- tweet_idを送信 -->
+                    <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                    <!-- user_idを送信 -->
+                    <input type="hidden" name="user_id" value="{{ $tweet->user_id }}">
+                </form>
+            </div>
+
+            <!-- コメント一覧 -->
+            <h2 class="comment-title">コメント一覧</h2>
+            <div class="comment-lists">
+                @foreach ($comments as $comment)
+                    <div class="comment-list">
+                        <div class="comment-user">{{ $comment->user->name }}</div>
+                        <div class="comment-content">{{ $comment->content }}</div>
+                        <!-- 削除ボタン -->
+                        <form id="delete-form" method="POST" action="{{ route('comment.destroy') }}">
+                            @csrf
+
+                            <div class="comment_menu">
+                                <button href="javascript:void(0);" onclick="deleteDialog();">
+                                    削除
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endauth
+
 </x-app-layout>

@@ -23,7 +23,7 @@
                     @endauth
                 </div>
             </div>
-            
+
             @auth
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -66,7 +66,7 @@
                 @if (Route::has('login'))
                     <div align="right" width="48">
                         <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" style="font-weight:bold;">ログイン</a>
-            
+
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" style="font-weight:bold;">新規登録</a>
                         @endif
@@ -88,9 +88,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('tweet.index')" :active="request()->routeIs('tweet.index')">
+                一覧
             </x-responsive-nav-link>
+            <!-- ログイン済なら投稿ボタンを表示 -->
+            @auth
+                <x-responsive-nav-link :href="route('tweet.create')" :active="request()->routeIs('tweet.create')">
+                    投稿
+                </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
