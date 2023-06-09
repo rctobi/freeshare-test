@@ -1,12 +1,8 @@
 <x-app-layout>
 
-    @section('styles')
-        <link rel="stylesheet" href="{{ asset('css/create.css') }}">
-    @endsection
+    <x-slot name=title>投稿 / FreeShare</x-slot>
 
-    <x-slot name=title>FreeShare | 新規投稿</x-slot>
-
-    <x-slot name=header>新規投稿</x-slot>
+    <x-slot name=header>投稿</x-slot>
 
     <form method="POST" action="{{ route('tweet.store') }}" enctype="multipart/form-data">
         @csrf
@@ -17,11 +13,15 @@
         </div>
 
         <div class="form-item">
-            <label for="image" accept="image/png, image/jpeg, image/jpg">ファイルを選択</label><br>
+            <label for="image" accept="image/png, image/jpeg, image/jpg"></label><br>
             <input type="file" name="image" value="{{ old('image') }}">
-            @error('image'){{ $message }}@enderror
+            @error('image')<div class="error">{{ $message }}</div>@enderror
         </div>
-        <x-primary-button>投稿</x-primary-button>
+        
+        <!-- user_idも送信 -->
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        
+        <x-primary-button onclick="storeDialog">投稿</x-primary-button>
     </form>
 
 </x-app-layout>
