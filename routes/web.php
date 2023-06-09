@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,25 @@ use App\Http\Controllers\TweetController;
 |
 */
 
+// トップページの表示
 Route::get('/', [TweetController::class, 'index'])->name('tweet.index');
+// 投稿画面の表示
 Route::get('/create', [TweetController::class, 'create'])->name('tweet.create');
+// 投稿データの登録
 Route::post('/store', [TweetController::class, 'store'])->name('tweet.store');
+// 詳細画面の表示
+Route::get('/detail/{id}', [TweetController::class, 'show'])->name('tweet.show');
+// 編集画面の表示
+Route::get('/edit/{id}', [TweetController::class, 'edit'])->name('tweet.edit');
+// 編集データの登録
+Route::post('/update', [TweetController::class, 'update'])->name('tweet.update');
+// 投稿データの削除
+Route::post('/destroy/{id}', [TweetController::class, 'destroy'])->name('tweet.destroy');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// コメントの登録
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+// コメントの削除
+Route::post('/comment/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
