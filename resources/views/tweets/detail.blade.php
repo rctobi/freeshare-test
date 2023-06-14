@@ -81,7 +81,7 @@
             <div class="comment-lists">
                 @foreach ($comments as $comment)
                     <div class="comment-list">
-                        <div class="comment-user">{{ $comment->user->name }}</div>
+                        <div class="comment-user">{{ Auth::user()->name }}</div>
                         <div class="comment-content">{{ $comment->content }}</div>
                         <!-- 削除ボタン -->
                         <form id="delete-form" method="POST" action="{{ route('comment.destroy') }}">

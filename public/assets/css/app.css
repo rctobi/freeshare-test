@@ -206,15 +206,14 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .comment-lists {
+    background-color: #fff;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
     margin: 5px 0;
 }
 
 .comment-list {
     position: relative;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-    padding: 16px;
+    padding: 10px 15px;
 }
 
 .comment-user {

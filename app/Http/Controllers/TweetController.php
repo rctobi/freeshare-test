@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tweet;
-use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TweetRequest;
 use Illuminate\Support\Facades\DB;
@@ -66,7 +65,7 @@ class TweetController extends Controller
             session()->flash('message', '投稿データがありません。');
             return redirect(route('tweet.index'));
         }
-        $comments = Comment::orderBy('created_at', 'desc')->get();
+        $comments = $tweet->comments()->orderBy('created_at', 'desc')->get();
         return view('tweets.detail', compact('tweet', 'comments'));
     }
 
